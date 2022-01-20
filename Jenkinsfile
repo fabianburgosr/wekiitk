@@ -7,7 +7,7 @@ pipeline {
         REGISTRY = 'fabr9013/bpsptwso2'
         registryCredential = '7030bf22-a808-4bd4-99e8-df7f13619bf1'
         chartsName="wekiitk"
-        namespace="wekii"
+        namespace="wekii2"
     }
   agent {
     kubernetes {
