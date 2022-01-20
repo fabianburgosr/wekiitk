@@ -30,35 +30,5 @@ spec:
           service:
             name: {{ .Values.uriservice}}
             port:
-              number: {{ .Values.service.port }}
-  - host: {{ .Values.uriserviceexternal }}
-    http:
-      paths:
-      - pathType: Prefix 
-        path: "/bpspt/payco/(create/|$)(.*)"
-        backend:
-          service:
-            name: {{ .Values.uriservice}}
-            port:
-              number: {{ .Values.service.port }}
-  - host: {{ .Values.uriserviceexternal }}
-    http:
-      paths:
-      - pathType: Prefix 
-        path: "/bpspt/payco/(czgvMpNW3YEaaFhLee|$)(.*)"
-        backend:
-          service:
-            name: {{ .Values.uriservice}}
-            port:
-              number: {{ .Values.service.port }}
-  - host: {{ .Values.uriserviceexternal }}
-    http:
-      paths:
-      - pathType: Prefix 
-        path: "/(.*)"
-        backend:
-          service:
-            name: {{ .Values.uriservice}}
-            port:
-              number: {{ .Values.service.port }}              
+              number: {{ .Values.service.port }}          
 {{- end }}
