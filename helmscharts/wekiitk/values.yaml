@@ -1,0 +1,36 @@
+master:
+  nameservice: "wso2mi-pt-securepayco"
+  uriserviceexternal: "wso2mi-pt-securepayco.wekii.tk"
+  healthcheckHttp: 8090
+  varnamespace: wekii
+  varappname: wordpress-site
+  vartier: frontend
+  varmaxUnavailable: 25 
+  varmaxSurge: 25
+  
+wpimage:
+  repository: "miguelburgos/wekii"
+  imagePull: 
+    - name: fabrdockerhubregcred
+  tag: dev-7
+  pullPolicy: Always
+
+wpcontainer:
+  name: app
+  replicaCount: 1
+  port: 8290
+
+wpenvFrom:
+  - configMapRef:
+      name: wordpress-configmap
+
+wpresources:
+  requests:
+    memory: "ssds"
+
+wpvolumes:
+  - name: nginxconf
+    configMap:
+      name: nginxthroughpass
+      defaultMode: 256
+      optional: false

@@ -1,0 +1,27 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.master.nameservice }}
+  namespace: {{ .Values.master.varnamespace }}
+  labels:
+    app: {{ .Values.master.varappname }}
+spec:
+  ports:
+    - name: {{ .Values.service.httpportname }}
+      targetPort: {{ .Values.service.httptargetport }}
+      port: {{ .Values.service.httpport }} 
+      protocol: TCP
+    - name: {{ .Values.service.httpsportname }}
+      port: {{ .Values.service.httpsport }}
+      targetPort: {{ .Values.service.httpstargetport }}
+      protocol: TCP
+    - name: {{ .Values.service.fastcgiportname }}
+      port: {{ .Values.service.fastsport }}
+      targetPort: {{ .Values.service.fasttargetport }}
+      protocol: TCP
+  selector:
+    app: {{ .Values.master.varappname }}
+    tier:  {{ .Values.master.vartier }}
+  externalIPs:
+  - 10.124.0.4
