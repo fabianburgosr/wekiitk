@@ -37,9 +37,10 @@ pipeline {
         		    //sh 'helm install nginx-ingress-${chartsName} nginx-stable/nginx-ingress --set controller.publishService.enabled=true,controller.hostNetwork=true,controller.service.type="" --namespace wso2mi'
         		    
                      //Despliego el servicio de WP- wekiitk
-                     //
-                sh 'helm install ${chartsName} ./helmscharts/${chartsName} --namespace ${namespace}'
-        		    //sh '/tmp/test.sh  helm install ${chartsName} ./helmcharts/${chartsName} --namespace wso2mi --dry-run --debug --kubeconfig=/tmp/.kube/config'
+                     //Deploy
+                //sh 'helm install ${chartsName} ./helmscharts/${chartsName} --namespace ${namespace}'
+                     //TEST
+        		    sh 'helm install ${chartsName} ./helmscharts/${chartsName} --namespace ${namespace} --dry-run --debug'
                  }
             }
          }
