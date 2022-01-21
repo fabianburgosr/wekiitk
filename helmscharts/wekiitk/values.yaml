@@ -6,13 +6,24 @@ master:
   varmaxUnavailable: 25 
   varmaxSurge: 25
 
-wpservice:
+wpingress:
   varurlservice: wekii.tk 
   varurlservice2: wekii.tk
   varbackendservname1: wordpress-site
   varbackendservport1: 443
   varbackendservname2: wordpress-site
   varbackendservport2: 443
+  
+wpservices:
+  httpportname: 80
+  httptargetport: 80
+  httpport: 80
+  httpsportname: 443
+  httpsport: 443
+  httpstargetport: 443
+  fastcgiportname: 9000
+  fastsport: 9000
+  fasttargetport: 9000
   
 wpimage:
   repository: "miguelburgos/wekii"
