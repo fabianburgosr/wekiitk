@@ -6,7 +6,7 @@ pipeline {
         dockerImage = ''
         REGISTRY = 'fabr9013/bpsptwso2'
         registryCredential = '7030bf22-a808-4bd4-99e8-df7f13619bf1'
-        chartsName="vclusterwekiitk"
+        chartsName="wekiitk"
         namespace="wekii"
     }
   agent {
@@ -40,7 +40,7 @@ pipeline {
                      //Deploy
                 //sh 'helm install ${chartsName} ./helmscharts/${chartsName} --namespace ${namespace}'
                      //TEST
-        		    sh 'helm install ${chartsName} ./helmscharts/${chartsName} --namespace ${namespace} --dry-run --debug'
+        		    sh 'helm install vclusterwekiitk ./helmscharts/${chartsName} --namespace ${namespace} --dry-run --debug'
                  }
             }
          }
