@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.master.varappname }}-wekii-deployment
+  namespace: {{ .Values.master.varnamespace }}
+  labels:
+    app: {{ .Values.master.varappname }}
+spec:
+  replicas: {{ .Values.wpcontainer.replicaCount }}
+  revisionHistoryLimit: 2
+  minReadySeconds: 30
+  selector:
+    matchLabels:
+      deployment: {{ .Values.master.varappname }}-app
+      app: {{ .Values.master.varappname }}
+      tier: {{ .Values.master.vartier }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: {{ .Values.master.varmaxUnavailable }}
+      maxSurge: {{ .Values.master.varmaxSurge }}
+  template:
+    metadata:
+      labels:
+        deployment: {{ .Values.wpcontainer.name }}-app
+        role: rolling-update
+        app: {{ .Values.master.varappname }}
+        tier: {{ .Values.master.vartier }}
+    spec:
+      containers:
+        - name: {{ .Values.wpcontainer.name }}
+          image: '{{ .Values.wpimage.repository }}:{{ .Values.wpimage.tag }}'
+          resources:
+          {{ if .Values.wpresources }} 
+          {{ toYaml .Values.wpresources | indent 12 }}
+           {{ end }}
+   
