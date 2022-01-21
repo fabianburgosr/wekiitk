@@ -29,26 +29,26 @@ spec:
         tier: {{ .Values.master.vartier }}
     spec:
       containers:
-    - name: app
-      image: miguelburgos/wekii:dev-7
-      envFrom:
-        - configMapRef:
-            name: wordpress-configmap
-      resources:
-        limits:
-          cpu: 500m
-          memory: 1Gi
-        requests:
-          cpu: 250m
-          memory: 250Mi
-      volumeMounts:
-        - name: phpfpm-persistent-storage
-          mountPath: /usr/local/etc/
-        - name: wordpress-persistent-storage
-          mountPath: /var/www/html
-        - name: default-token-vs7jv
-          readOnly: true
-          mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-      terminationMessagePath: /dev/termination-log
-      terminationMessagePolicy: File
-      imagePullPolicy: IfNotPresent
+        - name: app
+          image: miguelburgos/wekii:dev-7
+          envFrom:
+           - configMapRef:
+             name: wordpress-configmap
+          resources:
+            limits:
+              cpu: 500m
+              memory: 1Gi
+          requests:
+              cpu: 250m
+              memory: 250Mi
+          volumeMounts:
+            - name: phpfpm-persistent-storage
+              mountPath: /usr/local/etc/
+            - name: wordpress-persistent-storage
+              mountPath: /var/www/html
+            - name: default-token-vs7jv
+              readOnly: true
+              mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
