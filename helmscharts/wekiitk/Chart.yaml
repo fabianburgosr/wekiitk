@@ -1,6 +1,0 @@
-apiVersion: v1
-name: WP_WEKIITK
-description: A Helm chart for deploy WP-wekii on Kubernetes
-type: application
-version: 0.1.0
-appVersion: 0.1.0
