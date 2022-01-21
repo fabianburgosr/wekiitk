@@ -17,9 +17,9 @@ spec:
         path: "/"
         backend:
           service:
-            name: {{ .Values.wpingress.backendservname1 }}
+            name: {{ .Values.wpingress.varbackendservname1 }}
             port:
-              number: {{ .Values.wpingress.backendservport1 }}
+              number: {{ .Values.wpingress.varbackendservport1 }}
   - host: {{ .Values.wpingress.varurlservice2 }}
     http:
       paths:
@@ -27,7 +27,7 @@ spec:
         path: "/"
         backend:
           service:
-            name: {{ .Values.wpingress.backendservname2 }}
+            name: {{ .Values.wpingress.varbackendservname2 }}
             port:
-              number: {{ .Values.wpingress.backendservport2 }}          
+              number: {{ .Values.wpingress.varbackendservport2 }}          
 {{- end }}
