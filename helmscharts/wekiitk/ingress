@@ -10,25 +10,24 @@ metadata:
   {{- end }}
 spec:
   rules:
-  - host: {{ .Values.uriservice }}
+  - host: {{ .Values.urlservice }}
     http:
       paths:
       - pathType: Prefix 
-        path: "/bpspt/payco/health"
+        path: "/"
         backend:
           service:
-            #name: {{ .Values.container.name }}-gateway-service
-            name: {{ .Values.uriservice}}
+            name: {{ .Values.varapp.backendservname1 }}
             port:
-              number: {{ .Values.service.port }}
-  - host: {{ .Values.uriserviceexternal }}
+              number: {{ .Values.varapp.backendservport1 }}
+  - host: {{ .Values.urlservice }}
     http:
       paths:
       - pathType: Prefix 
-        path: "/bpspt/payco/(payment/|$)(.*)"
+        path: "/"
         backend:
           service:
-            name: {{ .Values.uriservice}}
+            name: {{ .Values.varapp.backendservname2 }}
             port:
-              number: {{ .Values.service.port }}          
+              number: {{ .Values.varapp.backendservport2 }}          
 {{- end }}
