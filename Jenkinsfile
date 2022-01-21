@@ -40,7 +40,7 @@ pipeline {
                      //Deploy
                 //sh 'helm install ${chartsName} ./helmscharts/${chartsName} --namespace ${namespace}'
                      //TEST
-        		    sh 'helm update ${chartsName} ./helmscharts/${chartsName} --namespace ${namespace} --dry-run --debug'
+        		    sh 'helm install ${chartsName} ./helmscharts/${chartsName} --namespace ${namespace} --dry-run --debug'
                  }
             }
          }
