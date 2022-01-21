@@ -33,7 +33,7 @@ spec:
           image: miguelburgos/wekii:dev-7
           envFrom:
             - configMapRef:
-              name: wordpress-configmap
+                name: wordpress-configmap
           resources:
             limits:
               cpu: 500m
