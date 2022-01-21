@@ -23,7 +23,7 @@ pipeline {
           
         stage('Deploy WP-wekiitk to K8S') {	
             steps {
-                echo 'Deploy to K8s custom pod WSO2MI CE....'
+                echo 'Deploy to K8s custom pod WP-WEEKI CE....'
                 /* Funciona con el plugin de Kubernetes deployment de Azure -Actualmente tiene un bug-
                    script {
           		kubernetesDeploy (configs: 'deployment.yaml',kubeconfigId: 'kubeconfdigoce')
@@ -38,7 +38,7 @@ pipeline {
         		    
                      //Despliego el servicio de WP- wekiitk
                      //Deploy
-                    sh 'helm install ${chartsName} ./helmscharts/${chartsName} --namespace ${namespace}'
+                    sh 'helm install fabr ./helmscharts/${chartsName} --namespace ${namespace}'
                      //TEST
         		    //sh 'helm install vclusterwekiitk ./helmscharts/${chartsName} --namespace ${namespace} --dry-run --debug'
                  }
