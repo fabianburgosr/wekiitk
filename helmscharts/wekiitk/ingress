@@ -3,31 +3,31 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Values.container.name }}-gateway-ingress
+  name: {{ .Values.master.varappname }}-gateway-ingress
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
   rules:
-  - host: {{ .Values.urlservice }}
+  - host: {{ .Values.wpservice.varurlservice }}
     http:
       paths:
       - pathType: Prefix 
         path: "/"
         backend:
           service:
-            name: {{ .Values.varapp.backendservname1 }}
+            name: {{ .Values.wpservice.backendservname1 }}
             port:
-              number: {{ .Values.varapp.backendservport1 }}
-  - host: {{ .Values.urlservice2 }}
+              number: {{ .Values.wpservice.backendservport1 }}
+  - host: {{ .Values.wpservice.varurlservice2 }}
     http:
       paths:
       - pathType: Prefix 
         path: "/"
         backend:
           service:
-            name: {{ .Values.varapp.backendservname2 }}
+            name: {{ .Values.wpservice.backendservname2 }}
             port:
-              number: {{ .Values.varapp.backendservport2 }}          
+              number: {{ .Values.wpservice.backendservport2 }}          
 {{- end }}
