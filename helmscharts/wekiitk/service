@@ -8,17 +8,17 @@ metadata:
     app: {{ .Values.master.varappname }}
 spec:
   ports:
-    - name: {{ .Values.service.httpportname }}
-      targetPort: {{ .Values.service.httptargetport }}
-      port: {{ .Values.service.httpport }} 
+    - name: {{ .Values.wpservices.httpportname }}
+      targetPort: {{ .Values.wpservices.httptargetport }}
+      port: {{ .Values.wpservices.httpport }} 
       protocol: TCP
-    - name: {{ .Values.service.httpsportname }}
-      port: {{ .Values.service.httpsport }}
-      targetPort: {{ .Values.service.httpstargetport }}
+    - name: {{ .Values.wpservices.httpsportname }}
+      port: {{ .Values.wpservices.httpsport }}
+      targetPort: {{ .Values.wpservices.httpstargetport }}
       protocol: TCP
-    - name: {{ .Values.service.fastcgiportname }}
-      port: {{ .Values.service.fastsport }}
-      targetPort: {{ .Values.service.fasttargetport }}
+    - name: {{ .Values.wpservices.fastcgiportname }}
+      port: {{ .Values.wpservices.fastsport }}
+      targetPort: {{ .Values.wpservices.fasttargetport }}
       protocol: TCP
   selector:
     app: {{ .Values.master.varappname }}
