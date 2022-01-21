@@ -10,24 +10,24 @@ metadata:
   {{- end }}
 spec:
   rules:
-  - host: {{ .Values.wpservice.varurlservice }}
+  - host: {{ .Values.wpingress.varurlservice }}
     http:
       paths:
       - pathType: Prefix 
         path: "/"
         backend:
           service:
-            name: {{ .Values.wpservice.backendservname1 }}
+            name: {{ .Values.wpingress.backendservname1 }}
             port:
-              number: {{ .Values.wpservice.backendservport1 }}
-  - host: {{ .Values.wpservice.varurlservice2 }}
+              number: {{ .Values.wpingress.backendservport1 }}
+  - host: {{ .Values.wpingress.varurlservice2 }}
     http:
       paths:
       - pathType: Prefix 
         path: "/"
         backend:
           service:
-            name: {{ .Values.wpservice.backendservname2 }}
+            name: {{ .Values.wpingress.backendservname2 }}
             port:
-              number: {{ .Values.wpservice.backendservport2 }}          
+              number: {{ .Values.wpingress.backendservport2 }}          
 {{- end }}
