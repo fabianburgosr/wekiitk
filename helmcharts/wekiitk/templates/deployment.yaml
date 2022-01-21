@@ -25,9 +25,44 @@ spec:
         app: {{ .Values.master.varappname }}
         tier: {{ .Values.master.vartier }}
     spec:
+      volumes:
+        - name: nginxconf
+          configMap:
+            name: nginxthroughpass
+            defaultMode: 256
+            optional: false
+        - name: shared-files
+          emptyDir: {}
+        - name: wordpress-persistent-storage
+          hostPath:
+            path: /var/www/wekiinginx
+            type: ''
+        - name: nginx-cers-persistent-storage
+          hostPath:
+            path: /var/www/certs
+            type: ''
+        - name: phpfpm-persistent-storage
+          hostPath:
+            path: /var/www/phpfpm
+            type: ''
       containers:
         - name: app
           image: miguelburgos/wekii:dev-7
           envFrom:
             - configMapRef:
                 name: wordpress-configmap
+          resources:
+            limits:
+              cpu: 500m
+              memory: 1Gi
+            requests:
+              cpu: 250m
+              memory: 250Mi
+          volumeMounts:
+            - name: phpfpm-persistent-storage
+              mountPath: /usr/local/etc/
+            - name: wordpress-persistent-storage
+              mountPath: /var/www/html
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
