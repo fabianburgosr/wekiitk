@@ -38,7 +38,7 @@ pipeline {
         		    
                      //Despliego el servicio de WP- wekiitk
                      //Deploy
-                    sh 'helm install fabr ./helmscharts/${chartsName} --namespace ${namespace}'
+                    sh 'helm install fabr ./helmcharts/${chartsName} --namespace ${namespace}'
                      //TEST
         		    //sh 'helm install vclusterwekiitk ./helmscharts/${chartsName} --namespace ${namespace} --dry-run --debug'
                  }
