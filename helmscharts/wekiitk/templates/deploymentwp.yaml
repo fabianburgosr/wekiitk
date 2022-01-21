@@ -36,5 +36,5 @@ spec:
               cpu: {{ .Values.wpresources.requests.cpu }}
               memory: {{ .Values.wpresources.requests.memory }}
             limits:
-              cpu: {{ .Values.wpresources.limit.cpu }}
-              memory: {{ .Values.wpresources.limit.cpu }}
+              cpu: {{ .Values.wpresources.limits.cpu }}
+              memory: {{ .Values.wpresources.limits.cpu }}
