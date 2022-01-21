@@ -20,7 +20,7 @@ spec:
             name: {{ .Values.varapp.backendservname1 }}
             port:
               number: {{ .Values.varapp.backendservport1 }}
-  - host: {{ .Values.urlservice }}
+  - host: {{ .Values.urlservice2 }}
     http:
       paths:
       - pathType: Prefix 
