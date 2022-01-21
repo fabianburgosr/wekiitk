@@ -1,0 +1,33 @@
+---
+{{- if .Values.ingress.enabled -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.master.varappname }}-ingress
+  {{- with .Values.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  rules:
+  - host: {{ .Values.wpingress.varurlservice }}
+    http:
+      paths:
+      - pathType: Prefix 
+        path: "/"
+        backend:
+          service:
+            name: {{ .Values.wpingress.backendservname1 }}
+            port:
+              number: {{ .Values.wpingress.backendservport1 }}
+  - host: {{ .Values.wpingress.varurlservice2 }}
+    http:
+      paths:
+      - pathType: Prefix 
+        path: "/"
+        backend:
+          service:
+            name: {{ .Values.wpingress.backendservname2 }}
+            port:
+              number: {{ .Values.wpingress.backendservport2 }}          
+{{- end }}
