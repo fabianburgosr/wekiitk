@@ -31,6 +31,7 @@ spec:
       containers:
         - name: {{ .Values.wpcontainer.name }}
           image: '{{ .Values.wpimage.repository }}:{{ .Values.wpimage.tag }}'
+          magePullPolicy : IfNotPresent
           resources:
             requests:
               cpu: {{ .Values.wpresources.requests.cpu }}
