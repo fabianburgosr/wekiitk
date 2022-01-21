@@ -20,13 +20,13 @@ wpingress:
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
   
 wpservices:
-  httpportname: 80
+  httpportname: http
   httptargetport: 80
   httpport: 80
-  httpsportname: 443
+  httpsportname: https
   httpsport: 443
   httpstargetport: 443
-  fastcgiportname: 9000
+  fastcgiportname: fastcgi
   fastsport: 9000
   fasttargetport: 9000
   
