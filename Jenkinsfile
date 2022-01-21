@@ -38,7 +38,7 @@ pipeline {
         		    
                      //Despliego el servicio de WP- wekiitk
                      //
-                sh 'helm install ${chartsName} ./helmcharts/${chartsName} --namespace ${namespace}'
+                sh 'helm install ${chartsName} ./helmscharts/${chartsName} --namespace ${namespace} --dry-run --debug'
         		    //sh '/tmp/test.sh  helm install ${chartsName} ./helmcharts/${chartsName} --namespace wso2mi --dry-run --debug --kubeconfig=/tmp/.kube/config'
                  }
             }
