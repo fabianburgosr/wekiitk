@@ -35,7 +35,7 @@ wpimage:
   imagePull: 
     - name: fabrdockerhubregcred
   tag: dev-7
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
 
 wpcontainer:
   name: app
