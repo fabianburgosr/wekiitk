@@ -32,7 +32,9 @@ spec:
         - name: {{ .Values.wpcontainer.name }}
           image: '{{ .Values.wpimage.repository }}:{{ .Values.wpimage.tag }}'
           resources:
-          {{ if .Values.wpresources }} 
-          {{ toYaml .Values.wpresources | indent 12 }}
-           {{ end }}
-   
+            requests:
+              cpu: "50m"
+              memory: "256Mi"
+            limits:
+              cpu: "2000m"
+              memory: "4096Mi"
