@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.master.varappname }}-wekii-deployment
+  name: {{ .Values.master.varappname }}-deployment
   namespace: {{ .Values.master.varnamespace }}
   labels:
     app: {{ .Values.master.varappname }}
