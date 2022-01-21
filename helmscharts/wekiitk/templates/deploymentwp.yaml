@@ -29,13 +29,26 @@ spec:
         tier: {{ .Values.master.vartier }}
     spec:
       containers:
-        - name: {{ .Values.wpcontainer.name }}
-          image: '{{ .Values.wpimage.repository }}:{{ .Values.wpimage.tag }}'
-          magePullPolicy : IfNotPresent
-          resources:
-            requests:
-              cpu: {{ .Values.wpresources.requests.cpu }}
-              memory: {{ .Values.wpresources.requests.memory }}
-            limits:
-              cpu: {{ .Values.wpresources.limits.cpu }}
-              memory: {{ .Values.wpresources.limits.cpu }}
+    - name: app
+      image: miguelburgos/wekii:dev-7
+      envFrom:
+        - configMapRef:
+            name: wordpress-configmap
+      resources:
+        limits:
+          cpu: 500m
+          memory: 1Gi
+        requests:
+          cpu: 250m
+          memory: 250Mi
+      volumeMounts:
+        - name: phpfpm-persistent-storage
+          mountPath: /usr/local/etc/
+        - name: wordpress-persistent-storage
+          mountPath: /var/www/html
+        - name: default-token-vs7jv
+          readOnly: true
+          mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      imagePullPolicy: IfNotPresent
