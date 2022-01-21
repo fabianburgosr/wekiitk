@@ -7,6 +7,8 @@ master:
   vartier: frontend
   varmaxUnavailable: 25 
   varmaxSurge: 25
+  varurlservice: 
+  varurlservice2:
   
 wpimage:
   repository: "miguelburgos/wekii"
