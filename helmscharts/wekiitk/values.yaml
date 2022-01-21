@@ -1,14 +1,18 @@
 master:
-  nameservice: "wso2mi-pt-securepayco"
-  uriserviceexternal: "wso2mi-pt-securepayco.wekii.tk"
   healthcheckHttp: 8090
   varnamespace: wekii
   varappname: wordpress-site
   vartier: frontend
   varmaxUnavailable: 25 
   varmaxSurge: 25
-  varurlservice: 
-  varurlservice2:
+
+wpservice:
+  varurlservice: wekii.tk 
+  varurlservice2: wekii.tk
+  varbackendservname1: wordpress-site
+  varbackendservport1: 443
+  varbackendservname2: wordpress-site
+  varbackendservport2: 443
   
 wpimage:
   repository: "miguelburgos/wekii"
