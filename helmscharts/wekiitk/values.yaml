@@ -9,7 +9,7 @@ master:
 wpingress:
   enabled: true
   varurlservice: wekii.tk 
-  varurlservice2: wekii.tk
+  varurlservice2: www.wekii.tk
   varbackendservname1: wordpress-site
   varbackendservport1: 443
   varbackendservname2: wordpress-site
