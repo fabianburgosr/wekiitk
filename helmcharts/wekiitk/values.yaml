@@ -1,0 +1,62 @@
+master:
+  healthcheckHttp: 8090
+  varnamespace: wekii
+  varappname: wordpress-site
+  vartier: frontend
+  varmaxUnavailable: 25 
+  varmaxSurge: 25
+
+wpingress:
+  enabled: true
+  varurlservice: wekii.tk 
+  varurlservice2: www.wekii.tk
+  varbackendservname1: wordpress-site
+  varbackendservport1: 443
+  varbackendservname2: wordpress-site
+  varbackendservport2: 443 
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /bpspt/payco/$1$2
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+  
+wpservices:
+  httpportname: http
+  httptargetport: 80
+  httpport: 80
+  httpsportname: https
+  httpsport: 443
+  httpstargetport: 443
+  fastcgiportname: fastcgi
+  fastsport: 9000
+  fasttargetport: 9000
+  
+wpimage:
+  repository: "miguelburgos/wekii"
+  imagePull: 
+    - name: fabrdockerhubregcred
+  tag: dev-7
+  pullPolicy: IfNotPresent
+
+wpcontainer:
+  name: app
+  replicaCount: 1
+  port: 8290
+
+wpenvFrom:
+  - configMapRef:
+      name: wordpress-configmap
+
+wpresources:
+  requests:
+    cpu : "200m"
+    memory: "256Mi"
+  limits:
+    cpu: "2000m"
+    memory: "4096Mi"
+
+wpvolumes:
+  - name: nginxconf
+    configMap:
+      name: nginxthroughpass
+      defaultMode: 256
+      optional: false

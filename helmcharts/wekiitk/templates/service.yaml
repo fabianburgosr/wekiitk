@@ -1,0 +1,26 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.master.varappname }}-service
+  namespace: {{ .Values.master.varnamespace }}
+  labels:
+    app: {{ .Values.master.varappname }}
+spec:
+  ports:
+    - name: {{ .Values.wpservices.httpportname }}
+      targetPort: {{ .Values.wpservices.httptargetport }}
+      port: {{ .Values.wpservices.httpport }} 
+      protocol: TCP
+    - name: {{ .Values.wpservices.httpsportname }}
+      port: {{ .Values.wpservices.httpsport }}
+      targetPort: {{ .Values.wpservices.httpstargetport }}
+      protocol: TCP
+    - name: {{ .Values.wpservices.fastcgiportname }}
+      port: {{ .Values.wpservices.fastsport }}
+      targetPort: {{ .Values.wpservices.fasttargetport }}
+      protocol: TCP
+  selector:
+    app: {{ .Values.master.varappname }}
+    tier:  {{ .Values.master.vartier }}
+  
