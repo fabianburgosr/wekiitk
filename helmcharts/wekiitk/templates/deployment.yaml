@@ -46,18 +46,18 @@ spec:
             path: /var/www/phpfpm
             type: ''
       containers:
-        - name: app
-          image: miguelburgos/wekii:dev-7
+        - name: {{ .Values.wpcontainer.name }}
+          image: {{ .Values.wpimage.repository }}:{{ .Values.wpimage.tag }}
           envFrom:
             - configMapRef:
                 name: wordpress-configmap
           resources:
             limits:
-              cpu: 500m
-              memory: 1Gi
+              cpu: {{ .Values.wpresources.requests.cpu }}
+              memory: {{ .Values.wpresources.requests.memory }}
             requests:
-              cpu: 250m
-              memory: 250Mi
+              cpu: {{ .Values.wpresources.limits.cpu }}
+              memory: {{ .Values.wpresources.limits.memory }}
           volumeMounts:
             - name: phpfpm-persistent-storage
               mountPath: /usr/local/etc/
