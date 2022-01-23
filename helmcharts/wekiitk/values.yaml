@@ -60,3 +60,17 @@ wpvolumes:
       name: nginxthroughpass
       defaultMode: 256
       optional: false
+  - name: shared-files
+    emptyDir: {}
+  - name: wordpress-persistent-storage
+    hostPath:
+      path: /var/www/wekiinginx
+      type: ''
+  - name: nginx-cers-persistent-storage
+    hostPath:
+      path: /var/www/certs
+      type: ''
+  - name: phpfpm-persistent-storage
+    hostPath:
+      path: /var/www/phpfpm
+      type: ''
