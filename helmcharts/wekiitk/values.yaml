@@ -85,3 +85,24 @@ wpreadinessProbe:
   initialDelaySeconds: 15
   periodSeconds: 5
   timeoutSeconds: 4
+  
+wpwebserver:
+  name: nginx
+  image: nginx
+
+wpwebserveresources:
+  limits:
+    cpu: 250m
+    memory: 1Gi
+  requests:
+    cpu: 250m
+    memory: 512Mi
+          
+ wpwebservervolumeMounts:
+   - name: wordpress-persistent-storage
+     mountPath: /var/www/html
+   - name: nginx-cers-persistent-storage
+     mountPath: /root
+   - name: nginxconf
+     readOnly: true
+     mountPath: /etc/nginx/conf.d
