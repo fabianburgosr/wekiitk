@@ -92,7 +92,7 @@ wpwebserver:
 
 wpwebserveresources:
   limits:
-    cpu: 250m
+    cpu: 2000m
     memory: 1Gi
   requests:
     cpu: 250m
