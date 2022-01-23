@@ -74,3 +74,14 @@ wpvolumes:
     hostPath:
       path: /var/www/phpfpm
       type: ''
+      
+wplivenessProbe:
+  enabled: false
+  initialDelaySeconds: 15
+  periodSeconds: 5
+  
+wpreadinessProbe:
+  enabled: false
+  initialDelaySeconds: 15
+  periodSeconds: 5
+  timeoutSeconds: 4
