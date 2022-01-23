@@ -53,11 +53,11 @@ spec:
                 name: wordpress-configmap
           resources:
             limits:
-              cpu: {{ .Values.wpresources.requests.cpu }}
-              memory: {{ .Values.wpresources.requests.memory }}
-            requests:
               cpu: {{ .Values.wpresources.limits.cpu }}
               memory: {{ .Values.wpresources.limits.memory }}
+            requests:
+              cpu: {{ .Values.wpresources.requests.cpu }}
+              memory: {{ .Values.wpresources.requests.memory }}
           volumeMounts:
             - name: phpfpm-persistent-storage
               mountPath: /usr/local/etc/
