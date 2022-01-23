@@ -65,4 +65,13 @@ spec:
               mountPath: /var/www/html
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: {{ .Values.wpimage.pullPolicy }}
+        - name: {{ .Values.wpwebserver.name }}
+          image: {{ .Values.wpwebserver.image }}
+          resources:
+            limits:
+              cpu: {{ .Values.wpwebserveresources.limits.cpu }}
+              memory: {{ .Values.wpwebserveresources.limits.memory }}
+            requests:
+              cpu: {{ .Values.wpwebserveresources.requests.cpu }}
+              memory: {{ .Values.wpwebserveresources.requests.memory }}
