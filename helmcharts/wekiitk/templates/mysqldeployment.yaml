@@ -12,7 +12,7 @@ spec:
   minReadySeconds: 30
   selector:
     matchLabels:
-      app: {{ .Values.master.varappname }}
+      app: {{ .Values.master.varapp }}
       tier: {{ .Values.master.vardbtier }}
   strategy:
     type: RollingUpdate
