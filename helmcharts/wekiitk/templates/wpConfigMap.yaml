@@ -5,8 +5,6 @@ metadata:
   namespace: 
 data:
   # Configuration values can be set as key-value properties
-  database: mongodb
-  database_uri: mongodb://localhost:27017
   WORDPRESS_DB_HOST: wordpress-mysql2.wekiidev.svc.cluster.local
   WORDPRESS_DB_NAME: bpsconsu_wekiidb2
   WORDPRESS_DB_PASSWORD: password
