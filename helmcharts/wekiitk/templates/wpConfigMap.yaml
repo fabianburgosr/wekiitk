@@ -1,12 +1,12 @@
 kind: ConfigMap 
 apiVersion: v1 
 metadata:
-  name: wordpress-configmap
-  namespace: 
+  name: {{ .Values.wpconfigmap.name }}
+  namespace: {{ .Values.master.varnamespace }}
 data:
   # Configuration values can be set as key-value properties
-  WORDPRESS_DB_HOST: wordpress-mysql2.wekiidev.svc.cluster.local
-  WORDPRESS_DB_NAME: bpsconsu_wekiidb2
-  WORDPRESS_DB_PASSWORD: password
-  WORDPRESS_DB_USER: root
-  WORDPRESS_DEBUG: 'true'
+  WORDPRESS_DB_HOST: {{ .Values.wpconfigmap.WORDPRESS_DB_HOST }}
+  WORDPRESS_DB_NAME: {{ .Values.wpconfigmap.WORDPRESS_DB_NAME }}
+  WORDPRESS_DB_PASSWORD: {{ .Values.wpconfigmap.WORDPRESS_DB_PASSWORD }}
+  WORDPRESS_DB_USER: {{ .Values.wpconfigmap.WORDPRESS_DB_USER }}
+  WORDPRESS_DEBUG: {{ .Values.wpconfigmap.WORDPRESS_DEBUG }}
