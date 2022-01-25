@@ -13,6 +13,8 @@ wpconfigmap:
   wordpress_db_name: bpsconsu_wekiidb2
   wordpress_db_password: password
   wordpress_db_user: root
+  wordpress_fastcgi_pass: wordpress-site.wekidev:9000
+  wordpress_script_filename: /var/www/html/index.php
  # wordpress_debug: TRUE
 
 wpingress:
