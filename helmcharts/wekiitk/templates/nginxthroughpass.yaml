@@ -1,3 +1,8 @@
+kind: ConfigMap 
+apiVersion: v1 
+metadata:
+  name: {{ .Values.wpconfigmap.nginxthroughpassname }}
+  namespace: {{ .Values.master.varnamespace }}
 data:
   default.conf: |
             server_names_hash_bucket_size 64;
