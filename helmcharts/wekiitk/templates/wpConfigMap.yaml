@@ -9,3 +9,4 @@ data:
   WORDPRESS_DB_NAME: {{ .Values.wpconfigmap.wordpress_db_name }}
   WORDPRESS_DB_PASSWORD: {{ .Values.wpconfigmap.wordpress_db_password }}
   WORDPRESS_DB_USER: {{ .Values.wpconfigmap.wordpress_db_user }}
+  WORDPRESS_DEBUG: {{ .Values.wpconfigmap.wordpress_debug }}
