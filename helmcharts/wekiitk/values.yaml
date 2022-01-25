@@ -2,7 +2,10 @@ master:
   healthcheckHttp: 8090
   varnamespace: wekii
   varappname: wordpress-site
+  varapp: wordpress
+  vardbname: wordpress-mysql2
   vartier: frontend
+  vardbtier: mysql
   varmaxUnavailable: 25 
   varmaxSurge: 25
 
@@ -128,3 +131,22 @@ wpwebserveresources:
   requests:
     cpu: 250m
     memory: 512Mi
+
+wpdbcontainer:
+  replicaCount: 1
+  name: mysql
+  repository: mysql
+  tag: 5.7
+  portname: mysql
+  port: 3306
+
+wpdbimage:
+  pullPolicy: IfNotPresent
+  
+wpdbresources:
+  limits:
+    cpu: "1000m"
+    memory: "1Gi"
+  requests:
+    cpu: "250m"
+    memory: "250Mi"
