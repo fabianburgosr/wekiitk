@@ -13,7 +13,7 @@ wpconfigmap:
   wordpress_db_name: bpsconsu_wekiidb2
   wordpress_db_password: password
   wordpress_db_user: root
-  wordpress_debug: "true"
+  wordpress_debug: 'true'
 
 wpingress:
   enabled: true
