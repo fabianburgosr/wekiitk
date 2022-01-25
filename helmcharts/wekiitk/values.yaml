@@ -13,7 +13,7 @@ wpconfigmap:
   WORDPRESS_DB_NAME: bpsconsu_wekiidb2
   WORDPRESS_DB_PASSWORD: password
   WORDPRESS_DB_USER: root
-  WORDPRESS_DEBUG: 'true'
+  WORDPRESS_DEBUG: "TRUE"
 
 wpingress:
   enabled: true
