@@ -22,8 +22,8 @@ spec:
   template:
     metadata:
       labels:
-        app: {{ .Values.master.varappname }}
-        tier: {{ .Values.master.vartier }}
+        app: {{ .Values.master.varapp }}
+        tier: {{ .Values.master.vardbtier }}
     spec:
       volumes:
         - name: mysql-persistent-storage
