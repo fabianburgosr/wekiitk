@@ -9,6 +9,7 @@ master:
 wpconfigmap:
   enabled: true
   name: wordpress-configmap
+  phpconfigmapname: word-cm
   wordpress_db_host: wordpress-mysql2.wekiidev.svc.cluster.local
   wordpress_db_name: bpsconsu_wekiidb2
   wordpress_db_password: password
