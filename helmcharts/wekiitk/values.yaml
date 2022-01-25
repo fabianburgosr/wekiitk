@@ -9,11 +9,10 @@ master:
 wpconfigmap:
   enabled: true
   name: wordpress-configmap
-  WORDPRESS_DB_HOST: wordpress-mysql2.wekiidev.svc.cluster.local
-  WORDPRESS_DB_NAME: bpsconsu_wekiidb2
-  WORDPRESS_DB_PASSWORD: password
-  WORDPRESS_DB_USER: root
-  WORDPRESS_DEBUG: "TRUE"
+  wordpress_db_host: wordpress-mysql2.wekiidev.svc.cluster.local
+  wordpress_db_name: bpsconsu_wekiidb2
+  wordpress_db_password: password
+  wordpress_db_user: root
 
 wpingress:
   enabled: true
