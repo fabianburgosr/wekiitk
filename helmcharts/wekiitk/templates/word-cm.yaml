@@ -5,6 +5,6 @@ metadata:
   namespace: {{ .Values.master.varnamespace }}
 data:
   # Configuration values can be set as key-value properties
-  FASTCGI_PASS: {{ .Values.wpconfigmap.wordpress_db_host }}
-  SCRIPT_FILENAME: {{ .Values.wpconfigmap.wordpress_db_name }}
-  fastcgi_pass: {{ .Values.wpconfigmap.wordpress_db_password }}
+  FASTCGI_PASS: {{ .Values.wpconfigmap.wordpress_fastcgi_pass }}
+  SCRIPT_FILENAME: {{ .Values.wpconfigmap.wordpress_script_filename }}
+  fastcgi_pass: {{ .Values.wpconfigmap.wordpress_fastcgi_pass }}
