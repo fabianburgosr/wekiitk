@@ -6,6 +6,14 @@ master:
   varmaxUnavailable: 25 
   varmaxSurge: 25
 
+wpconfigmap:
+  enabled: true
+  WORDPRESS_DB_HOST: wordpress-mysql2.wekiidev.svc.cluster.local
+  WORDPRESS_DB_NAME: bpsconsu_wekiidb2
+  WORDPRESS_DB_PASSWORD: password
+  WORDPRESS_DB_USER: root
+  WORDPRESS_DEBUG: 'true'
+
 wpingress:
   enabled: true
   varurlservice: wekii2.tk 
