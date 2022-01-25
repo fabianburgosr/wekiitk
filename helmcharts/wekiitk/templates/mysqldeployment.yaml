@@ -48,6 +48,10 @@ spec:
               value: wpuser
             - name: MYSQL_PASSWORD
               value: g#6Igm5u5bamwLJHSm
+          ports:
+            - name: {{ .Values.wpdbcontainer.portname }}
+              containerPort: {{ .Values.wpdbcontainer.port }}
+              protocol: TCP
           resources:
             limits:
               cpu: {{ .Values.wpdbresources.limits.cpu }}
