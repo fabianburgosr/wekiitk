@@ -27,7 +27,7 @@ spec:
         path: "/"
         backend:
           service:
-            name: {{ .Values.wpingress.varbackendservname2 }}
+            name: {{ .Values.wpingress.varbackendservname2 }}-service
             port:
               number: {{ .Values.wpingress.varbackendservport2 }}          
 {{- end }}
