@@ -23,9 +23,9 @@ wpingress:
   enabled: true
   varurlservice: wekii2.tk 
   varurlservice2: www.wekii2.tk
-  varbackendservname1: wordpress-site
+  varbackendservname1: wordpress-site-service
   varbackendservport1: 443
-  varbackendservname2: wordpress-site
+  varbackendservname2: wordpress-site-service
   varbackendservport2: 443 
   annotations:
     kubernetes.io/ingress.class: "nginx"
