@@ -5,7 +5,7 @@ metadata:
   name: {{ .Values.master.vardbname }}-deployment
   namespace: {{ .Values.master.varnamespace }}
   labels:
-    app: {{ .Values.master.varappname }}
+    app: {{ .Values.master.varapp }}
 spec:
   replicas: {{ .Values.wpdbcontainer.replicaCount }}
   revisionHistoryLimit: 2
