@@ -13,7 +13,7 @@ spec:
   selector:
     matchLabels:
       app: {{ .Values.master.varappname }}
-      tier: {{ .Values.master.vartier }}
+      tier: {{ .Values.master.vardbtier }}
   strategy:
     type: RollingUpdate
     rollingUpdate:
