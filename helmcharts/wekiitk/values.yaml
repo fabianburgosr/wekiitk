@@ -8,6 +8,7 @@ master:
 
 wpconfigmap:
   enabled: true
+  name: wordpress-configmap
   WORDPRESS_DB_HOST: wordpress-mysql2.wekiidev.svc.cluster.local
   WORDPRESS_DB_NAME: bpsconsu_wekiidb2
   WORDPRESS_DB_PASSWORD: password
