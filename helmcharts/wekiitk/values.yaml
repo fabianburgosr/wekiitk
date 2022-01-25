@@ -14,7 +14,7 @@ wpconfigmap:
   name: wordpress-configmap
   phpconfigmapname: word-cm
   nginxthroughpassname: nginxthroughpass
-  wordpress_db_host: wordpress-mysql2.wekiidev.svc.cluster.local
+  wordpress_db_host: wordpress-mysql2.wekii.svc.cluster.local
   wordpress_db_name: bpsconsu_wekiidb2
   wordpress_db_password: password
   wordpress_db_user: root
