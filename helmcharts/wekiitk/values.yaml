@@ -14,11 +14,11 @@ wpconfigmap:
   name: wordpress-configmap
   phpconfigmapname: word-cm
   nginxthroughpassname: nginxthroughpass
-  wordpress_db_host: wordpress-mysql2-service.wekii.svc.cluster.local
+  wordpress_db_host: wordpress-mysql2-service
   wordpress_db_name: bpsconsu_wekiidb2
   wordpress_db_password: password
   wordpress_db_user: root
-  wordpress_fastcgi_pass: wordpress-site.wekidev:9000
+  wordpress_fastcgi_pass: wordpress-site-service.wekii:9000
   wordpress_script_filename: /var/www/html/index.php
  # wordpress_debug: TRUE
 
