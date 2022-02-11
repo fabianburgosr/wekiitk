@@ -110,6 +110,7 @@ wpvolumes:
       type: ''
       
 wpdbpvc:
+  app: wordpress
   name: mysql-wp-wekiitk-pv-claim
   storage: 20 Gi
       
