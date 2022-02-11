@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mysql-pv-claim
+  name: {{ .Values.wpdbpvc.name }}
   labels:
-    app: wordpress
+    app: {{ .Values.wpdbpvc.app }}
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 20Gi
+      storage: {{ .Values.wpdbpvc.storage }}
