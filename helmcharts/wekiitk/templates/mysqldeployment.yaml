@@ -28,7 +28,7 @@ spec:
       volumes:
         - name: mysql-persistent-storage
           persistentVolumeClaim:
-          claimName: {{ .Values.wpdbpvc.name }}
+            claimName: {{ .Values.wpdbpvc.name }}
       containers:
         - name: {{ .Values.wpdbcontainer.name }}
           image: {{ .Values.wpdbimage.repository }}:{{ .Values.wpdbimage.tag }}
