@@ -85,8 +85,8 @@ spec:
               subPath: private.key
               readOnly: true
             - name: wekiitkcert-pemstore
-              mountPath: /root/certificate.crt
-              subPath: certificate.crt
+              mountPath: /root/includesprivatekeywekiitk2.pem
+              subPath: includesprivatekeywekiitk2.pem
               readOnly: true
             - name: nginxconf
               readOnly: true
