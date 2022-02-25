@@ -83,11 +83,11 @@ spec:
             - name: wekiitkprivatekey-pemstore
               mountPath: /root/private.key
               subPath: private.key
-              readOnly: true
+              readOnly: false
             - name: wekiitkcert-pemstore
-              mountPath: /root/includesprivatekeywekiitk2.pem
-              subPath: includesprivatekeywekiitk2.pem
-              readOnly: true
+              mountPath: /root/endresult.crtm
+              subPath: endresult.crt
+              readOnly: false
             - name: nginxconf
               readOnly: true
               mountPath: /etc/nginx/conf.d
