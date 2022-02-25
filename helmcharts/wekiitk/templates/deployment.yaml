@@ -81,9 +81,9 @@ spec:
             - name: wordpress-persistent-storage
               mountPath: /var/www/html
             - name: wekiitkprivatekey-pemstore
-              mountPath: /root/private.key
-              subPath: private.key
-              readOnly: false
+              mountPath: /root/wekiitk_private_chained.key
+              subPath: wekiitk_private_chained.key
+              readOnly: true
             - name: wekiitkcert-pemstore
               mountPath: /root/normal.pem
               subPath: normal.pem
