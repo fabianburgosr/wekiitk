@@ -85,8 +85,8 @@ spec:
               subPath: private.key
               readOnly: false
             - name: wekiitkcert-pemstore
-              mountPath: /root/endresult.crtm
-              subPath: endresult.crt
+              mountPath: /root/normal.pem
+              subPath: normal.pem
               readOnly: true
             - name: nginxconf
               readOnly: true
