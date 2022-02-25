@@ -14,8 +14,8 @@ data:
     
     server {
             listen 443  ssl default_server;
-            ssl_certificate     /root/certificate.crt;
-            ssl_certificate_key /root/private.key;
+            ssl_certificate     /root/normal;
+            ssl_certificate_key /root/wekiitk_private_chained.key;
              root /var/www/html;
             server_name _;
             index index.php;
