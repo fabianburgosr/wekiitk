@@ -112,7 +112,7 @@ wpvolumes:
 wpdbpvc:
   app: wordpress
   name: mysql-wp-wekiitk-pv-claim
-  storage: 20 Gi
+  storage: 20Gi
       
 wplivenessProbe:
   enabled: false
