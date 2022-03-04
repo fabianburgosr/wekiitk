@@ -24,8 +24,8 @@ wpconfigmap:
 
 wpingress:
   enabled: true
-  varurlservice: wekii.tk 
-  varurlservice2: www.wekii.tk
+  varurlservice: wekii.ml
+  varurlservice2: www.wekii.ml
   varbackendservname1: wordpress-site-service
   varbackendservport1: 443
   varbackendservname2: wordpress-site-service
