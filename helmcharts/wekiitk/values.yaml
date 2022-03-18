@@ -116,6 +116,8 @@ wpdbpvc:
 
 wppvc:
   name: wp-rook-nfs-pv-claim
+  app: wordpress
+  storage: 4Gi
 
 wplivenessProbe:
   enabled: false
