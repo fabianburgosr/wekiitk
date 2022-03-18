@@ -1,0 +1,14 @@
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.wppvc.name }}
+  labels:
+    app: {{ .Values.wppvc.app }}
+spec:
+  storageClassName: "rook-nfs-share1"
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: {{ .Values.wppvc.storage }}
