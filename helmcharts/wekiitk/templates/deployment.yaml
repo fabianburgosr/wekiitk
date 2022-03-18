@@ -34,9 +34,8 @@ spec:
         - name: shared-files
           emptyDir: {}
         - name: wordpress-persistent-storage
-          hostPath:
-            path: /var/www/wekiinginx
-            type: ''
+          persistentVolumeClaim:
+            claimName: {{ .Values.wppvc.name }}
         - name: wekiitkprivatekey-pemstore
           configMap:
             name: wekiitkprivatekey-pemstore
