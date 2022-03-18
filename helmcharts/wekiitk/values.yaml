@@ -113,7 +113,10 @@ wpdbpvc:
   app: wordpress
   name: mysql-wp-wekiitk-pv-claim
   storage: 20Gi
-      
+
+wppvc:
+  name: wp-rook-nfs-pv-claim
+
 wplivenessProbe:
   enabled: false
   initialDelaySeconds: 15
