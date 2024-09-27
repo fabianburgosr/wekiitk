@@ -1,0 +1,10 @@
+kind: ConfigMap 
+apiVersion: v1 
+metadata:
+  name: {{ .Values.wpconfigmap.phpconfigmapname }}
+  namespace: {{ .Values.master.varnamespace }}
+data:
+  # Configuration values can be set as key-value properties
+  FASTCGI_PASS: {{ .Values.wpconfigmap.wordpress_fastcgi_pass }}
+  SCRIPT_FILENAME: {{ .Values.wpconfigmap.wordpress_script_filename }}
+  fastcgi_pass: {{ .Values.wpconfigmap.wordpress_fastcgi_pass }}

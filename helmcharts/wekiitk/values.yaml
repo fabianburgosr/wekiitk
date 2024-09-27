@@ -1,0 +1,167 @@
+master:
+  healthcheckHttp: 8090
+  varnamespace: wekii
+  varappname: wordpress-site
+  varapp: wordpress
+  vardbname: wordpress-mysql2
+  vartier: frontend
+  vardbtier: mysql
+  varmaxUnavailable: 25 
+  varmaxSurge: 25
+
+wpconfigmap:
+  enabled: true
+  name: wordpress-configmap
+  phpconfigmapname: word-cm
+  nginxthroughpassname: nginxthroughpass
+  wordpress_db_host: wordpress-mysql2-service
+  wordpress_db_name: bpsconsu_wekiidb2
+  wordpress_db_password: password
+  wordpress_db_user: root
+  wordpress_fastcgi_pass: wordpress-site-service.wekii:9000
+  wordpress_script_filename: /var/www/html/index.php
+ # wordpress_debug: TRUE
+
+wpingress:
+  enabled: true
+  varurlservice: wekii.ml
+  varurlservice2: www.wekii.ml
+  varbackendservname1: wordpress-site-service
+  varbackendservport1: 443
+  varbackendservname2: wordpress-site-service
+  varbackendservport2: 443 
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+    nginx.ingress.kubernetes.io/fastcgi-index: index.php
+    nginx.ingress.kubernetes.io/fastcgi-params-configmap: wekii/word-cm
+    nginx.ingress.kubernetes.io/fastcgi_read_timeout: '1800'
+    nginx.ingress.kubernetes.io/fastcgi_send_timeout: '1800'
+    nginx.ingress.kubernetes.io/proxy-read-timeout: '1800'
+    nginx.ingress.kubernetes.io/proxy-send-timeout: '1800'
+    nginx.ingress.kubernetes.io/secure-backends: 'TRUE'
+    nginx.ingress.kubernetes.io/server-snippets: |
+      location ~ \.php$ {
+              try_files $uri =404;
+              fastcgi_split_path_info ^(.+\.php)(/.+)$;
+              fastcgi_pass wordpress-site-service.wekii.svc.cluster.local:9000;
+              fastcgi_index index.php;
+              include fastcgi_params;
+              fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+              fastcgi_param PATH_INFO $fastcgi_path_info;
+      }
+    nginx.ingress.kubernetes.io/ssl-passthrough: 'true'
+  
+wpservices:
+  httpportname: http
+  httptargetport: 80
+  httpport: 80
+  httpsportname: https
+  httpsport: 443
+  httpstargetport: 443
+  fastcgiportname: fastcgi
+  fastsport: 9000
+  fasttargetport: 9000
+  
+wpimage:
+  repository: "miguelburgos/wekii"
+  imagePull: 
+    - name: fabrdockerhubregcred
+  tag: dev-7
+  pullPolicy: IfNotPresent
+
+wpcontainer:
+  name: app
+  replicaCount: 1
+  port: 8290
+
+wpenvFrom:
+  - configMapRef:
+      name: wordpress-configmap
+
+wpresources:
+  requests:
+    cpu : "200m"
+    memory: "256Mi"
+  limits:
+    cpu: "2000m"
+    memory: "4096Mi"
+
+wpvolumes:
+  - name: nginxconf
+    configMap:
+      name: nginxthroughpass
+      defaultMode: 256
+      optional: false
+  - name: shared-files
+    emptyDir: {}
+  - name: wordpress-persistent-storage
+    hostPath:
+      path: /var/www/wekiinginx
+      type: ''
+  - name: nginx-cers-persistent-storage
+    hostPath:
+      path: /var/www/certs
+      type: ''
+  - name: phpfpm-persistent-storage
+    hostPath:
+      path: /var/www/phpfpm
+      type: ''
+      
+wpdbpvc:
+  app: wordpress
+  name: mysql-wp-wekiitk-pv-claim
+  storage: 20Gi
+
+wppvc:
+  name: wp-rook-nfs-pv-claim
+  app: wordpress
+  storage: 4Gi
+
+wplivenessProbe:
+  enabled: false
+  initialDelaySeconds: 15
+  periodSeconds: 5
+  
+wpreadinessProbe:
+  enabled: false
+  initialDelaySeconds: 15
+  periodSeconds: 5
+  timeoutSeconds: 4
+  
+wpwebserver:
+  name: nginx
+  image: nginx
+
+wpwebserveresources:
+  limits:
+    cpu: 2000m
+    memory: 1Gi
+  requests:
+    cpu: 250m
+    memory: 512Mi
+
+wpdbcontainer:
+  replicaCount: 1
+  name: mysql
+  portname: mysql
+  port: 3306
+
+wpdbimage:
+  pullPolicy: IfNotPresent
+  repository: mysql
+  tag: 5.7
+    
+wpdbresources:
+  limits:
+    cpu: "1000m"
+    memory: "1Gi"
+  requests:
+    cpu: "250m"
+    memory: "250Mi"
+
+wpdbservices:
+  port: 3306
+  targetport: 3306
+  portname: mysqlport

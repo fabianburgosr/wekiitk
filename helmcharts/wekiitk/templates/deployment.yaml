@@ -1,0 +1,92 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.master.varappname }}-deployment
+  namespace: {{ .Values.master.varnamespace }}
+  labels:
+    app: {{ .Values.master.varappname }}
+spec:
+  replicas: {{ .Values.wpcontainer.replicaCount }}
+  revisionHistoryLimit: 2
+  minReadySeconds: 30
+  selector:
+    matchLabels:
+      app: {{ .Values.master.varappname }}
+      tier: {{ .Values.master.vartier }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: {{ .Values.master.varmaxUnavailable }}
+      maxSurge: {{ .Values.master.varmaxSurge }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.master.varappname }}
+        tier: {{ .Values.master.vartier }}
+    spec:
+      volumes:
+        - name: nginxconf
+          configMap:
+            name: nginxthroughpass
+            defaultMode: 256
+            optional: false
+        - name: shared-files
+          emptyDir: {}
+        - name: wordpress-persistent-storage
+          persistentVolumeClaim:
+            claimName: {{ .Values.wppvc.name }}
+        - name: wekiitkprivatekey-pemstore
+          configMap:
+            name: wekiitkprivatekey-pemstore
+        - name: wekiitkcert-pemstore
+          configMap:
+            name: wekiitkcert-pemstore
+        - name: phpfpm-persistent-storage
+          hostPath:
+            path: /var/www/phpfpm
+            type: ''
+      containers:
+        - name: {{ .Values.wpcontainer.name }}
+          image: {{ .Values.wpimage.repository }}:{{ .Values.wpimage.tag }}
+          envFrom:
+            - configMapRef:
+                name: wordpress-configmap
+          resources:
+            limits:
+              cpu: {{ .Values.wpresources.limits.cpu }}
+              memory: {{ .Values.wpresources.limits.memory }}
+            requests:
+              cpu: {{ .Values.wpresources.requests.cpu }}
+              memory: {{ .Values.wpresources.requests.memory }}
+          volumeMounts:
+            - name: phpfpm-persistent-storage
+              mountPath: /usr/local/etc/
+            - name: wordpress-persistent-storage
+              mountPath: /var/www/html
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: {{ .Values.wpimage.pullPolicy }}
+        - name: {{ .Values.wpwebserver.name }}
+          image: {{ .Values.wpwebserver.image }}
+          resources:
+            limits:
+              cpu: {{ .Values.wpwebserveresources.limits.cpu }}
+              memory: {{ .Values.wpwebserveresources.limits.memory }}
+            requests:
+              cpu: {{ .Values.wpwebserveresources.requests.cpu }}
+              memory: {{ .Values.wpwebserveresources.requests.memory }}
+          volumeMounts:
+            - name: wordpress-persistent-storage
+              mountPath: /var/www/html
+            - name: wekiitkprivatekey-pemstore
+              mountPath: /root/wekiitk_private_chained.key
+              subPath: wekiitk_private_chained.key
+              readOnly: true
+            - name: wekiitkcert-pemstore
+              mountPath: /root/normal.pem
+              subPath: normal.pem
+              readOnly: true
+            - name: nginxconf
+              readOnly: true
+              mountPath: /etc/nginx/conf.d

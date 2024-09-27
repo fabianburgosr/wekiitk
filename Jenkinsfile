@@ -15,7 +15,7 @@ pipeline {
       inheritFrom 'wso2mi'
       idleMinutes 5  // how long the pod will live after no jobs have run on it
       yamlFile 'build-pod.yaml'  // path to the pod definition relative to the root of our project 
-      defaultContainer 'maven'  // define a default container if more than a few stages use it, will default to jnlp container
+      defaultContainer 'helm'  // define a default container if more than a few stages use it, will default to jnlp container
     }
   }
       stages {
@@ -23,7 +23,7 @@ pipeline {
           
         stage('Deploy WP-wekiitk to K8S') {	
             steps {
-                echo 'Deploy to K8s custom pod WSO2MI CE....'
+                echo 'Deploy to K8s custom pod WP-WEEKI CE....'
                 /* Funciona con el plugin de Kubernetes deployment de Azure -Actualmente tiene un bug-
                    script {
           		kubernetesDeploy (configs: 'deployment.yaml',kubeconfigId: 'kubeconfdigoce')
@@ -37,9 +37,10 @@ pipeline {
         		    //sh 'helm install nginx-ingress-${chartsName} nginx-stable/nginx-ingress --set controller.publishService.enabled=true,controller.hostNetwork=true,controller.service.type="" --namespace wso2mi'
         		    
                      //Despliego el servicio de WP- wekiitk
-                     //
-                sh 'helm install ${chartsName} ./helmcharts/${chartsName} --namespace ${namespace}'
-        		    //sh '/tmp/test.sh  helm install ${chartsName} ./helmcharts/${chartsName} --namespace wso2mi --dry-run --debug --kubeconfig=/tmp/.kube/config'
+                     //Deploy
+                    sh 'helm install fabr ./helmcharts/${chartsName} --namespace ${namespace}'
+                     //TEST
+        		    //sh 'helm install vclusterwekiitk ./helmscharts/${chartsName} --namespace ${namespace} --dry-run --debug'
                  }
             }
          }
